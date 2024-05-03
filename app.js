@@ -3,8 +3,6 @@ const mongoose = require('mongoose')
 const setRoute = require('./routes/routes')
 const setMiddlewares = require('./middleware/middlewares')
 
-if (process.env.NODE_ENV !== 'production') require('dotenv').config()
-
 // set up view engine
 
 const app = express()
@@ -40,12 +38,11 @@ app.use((error, req, res, next) => {
     res.render('pages/error/500', {flashMessage: {}})
 })
 
-const PORT = process.env.PORT || 5000
+app.listen(3000, () => {
+    console.log('Server is running on port 3000')
+});
 
-mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-    .then(() => {
-        app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
-    })
-    .catch(e => console.log(e))
+// mongoose.connect( 'mongodb://root:example@mongo:27017', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+
 
 
