@@ -1,9 +1,12 @@
 {
   "name": "final-blog-project",
+  "homepage": "https://Nithin18-SEO.github.io/Blogify-App",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,6 +32,7 @@
     "reading-time": "^1.2.1"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "nodemon": "^2.0.22"
   }
 }
