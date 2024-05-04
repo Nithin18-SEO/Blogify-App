@@ -6,8 +6,8 @@ pipeline {
         registryUrl = 'programmer175/node-cicd'
         registryCredential = 'programmer175'
         dockerImage = ''
-        // cluster = 'ReactApp-Cluster'
-        // service = 'reactappsvc'
+        cluster = 'BlogifyCluster'
+        service = 'blogify_svc'
     }
 
     stages {
@@ -31,15 +31,15 @@ pipeline {
             }
         }
 
-    //     stage('Deploy to Amazon ECS Cluster'){
-    //     steps {
-    //         withAWS(region: 'us-east-1',credentials: 'jenkins-aws') {
-    //             script {
-    //                sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
-    //             }
-    //         }
-    //     }
-    //  }
+        stage('Deploy to Amazon ECS Cluster'){
+        steps {
+            withAWS(region: 'ap-south-1',credentials: 'jenkins_blogify') {
+                script {
+                   sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+                }
+            }
+        }
+     }
 
     }
 }
